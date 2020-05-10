@@ -179,11 +179,14 @@ public final class FBasics extends JavaPlugin {
                 String[] v = plugin.getDescription().getVersion().split("\\.");
                 version = v[0] + "_" + v[1];
 
+                int majorVersion = Integer.parseInt(v[0]);
+                int minorVersion = Integer.parseInt(v[1]);
+
                 // Special case for HCF - Use FactionsUUID 1.6 hook.
                 // Special case for 2.8 - Use Factions 2.7 hook.
-                if (version.compareTo("1_6") < 0) {
+                if (majorVersion == 1 && minorVersion <= 6) {
                     version = "1_6";
-                } else if (version.compareTo("2_7") > 0) {
+                } else if (majorVersion == 2 && minorVersion >= 7) {
                     version = "2_7";
                 }
                 break;
