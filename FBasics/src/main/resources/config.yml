@@ -11,7 +11,7 @@
 # * Set any messages in this configuration to "" to display nothing.
 
 # Version of the config file. Do not change this.
-config-version: 3
+config-version: 4
 
 # Duration in seconds for scheduled database cleanups, clears all outdated data to free up RAM and disk space.
 database-clean: 300
@@ -389,6 +389,12 @@ wilderness-attempts-message: "&cFailed to find a safe location after &d{attempts
 
 # This message is displayed when the user is not in an enabled world and default is set to "none".
 wilderness-world-message: "&cThis world does not support wilderness, please go to another then try again!"
+
+# This message is displayed when the /wild command is on global cooldown.
+wilderness-cooldown-message: "&cThis command is currently being used by too many people at once! Please wait {remaining} seconds and try again."
+
+# The number of seconds between usages of /wild for all players.
+wilderness-global-cooldown: 15
 
 # Materials wilderness is not allowed to teleport the player to.
 # A full list of materials can be found here: http://goo.gl/JIs4zo
