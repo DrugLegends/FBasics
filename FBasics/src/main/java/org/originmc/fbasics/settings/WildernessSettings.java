@@ -34,6 +34,10 @@ public final class WildernessSettings implements ISettings {
 
     private static final String WORLD_MESSAGE = PREFIX + "world-message";
 
+    private static final String COOLDOWN_MESSAGE = PREFIX + "cooldown-message";
+
+    private static final String GLOBAL_COOLDOWN = PREFIX + "global-cooldown";
+
     private static final String DENIED_BLOCKS = PREFIX + "denied-blocks";
 
     private static final String WORLDS = PREFIX + "worlds";
@@ -60,6 +64,10 @@ public final class WildernessSettings implements ISettings {
 
     private String worldMessage = "";
 
+    private String cooldownMessage = "";
+
+    private int globalCooldown = 15;
+
     private List<Material> deniedBlocks = new ArrayList<>();
 
     private HashMap<String, WildernessWorldSettings> worlds = new HashMap<>();
@@ -76,6 +84,8 @@ public final class WildernessSettings implements ISettings {
         successMessage = configuration.getString(SUCCESS_MESSAGE, "");
         attemptsMessage = configuration.getString(ATTEMPTS_MESSAGE, "");
         worldMessage = configuration.getString(WORLD_MESSAGE, "");
+        cooldownMessage = configuration.getString(COOLDOWN_MESSAGE, "");
+        globalCooldown = configuration.getInt(GLOBAL_COOLDOWN, 15);
         deniedBlocks = getMaterialList(configuration.getStringList(DENIED_BLOCKS));
         worlds.clear();
 

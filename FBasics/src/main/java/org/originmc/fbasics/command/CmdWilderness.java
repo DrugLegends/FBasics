@@ -16,6 +16,8 @@ public final class CmdWilderness extends CommandExecutor {
 
     private final WildernessSettings settings;
 
+    private static long lastUsed = 0;
+
     public CmdWilderness(FBasics plugin, CommandSender sender, String[] args, String permission) {
         super(plugin, sender, args, permission);
         this.plugin = plugin;
@@ -49,6 +51,16 @@ public final class CmdWilderness extends CommandExecutor {
             MessageUtils.sendMessage(player, settings.getWorldMessage());
             return true;
         }
+
+        long diff = System.currentTimeMillis() - lastUsed;
+
+        if (diff < settings.getGlobalCooldown() * 1000L) {
+            MessageUtils.sendMessage(player, settings.getCooldownMessage()
+                    .replace("{remaining}", String.valueOf(settings.getGlobalCooldown() - diff / 1000L)));
+            return true;
+        }
+
+        lastUsed = System.currentTimeMillis();
 
         // Create a new wilderness task.
         MessageUtils.sendMessage(player, settings.getSearchMessage());
