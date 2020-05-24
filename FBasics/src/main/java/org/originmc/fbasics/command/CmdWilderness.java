@@ -16,7 +16,7 @@ public final class CmdWilderness extends CommandExecutor {
 
     private final WildernessSettings settings;
 
-    private long lastUsed = 0;
+    private static long lastUsed = 0;
 
     public CmdWilderness(FBasics plugin, CommandSender sender, String[] args, String permission) {
         super(plugin, sender, args, permission);
@@ -56,7 +56,7 @@ public final class CmdWilderness extends CommandExecutor {
 
         if (diff < settings.getGlobalCooldown() * 1000L) {
             MessageUtils.sendMessage(player, settings.getCooldownMessage()
-                    .replace("{remaining}", String.valueOf(diff / 1000L)));
+                    .replace("{remaining}", String.valueOf(settings.getGlobalCooldown() - diff / 1000L)));
             return true;
         }
 
